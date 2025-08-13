@@ -7,6 +7,11 @@ const Partners = () => {
     },
     {
       
+      description: "Outstanding supplier of surveillance products and solutions",
+      logo: "/img/Picture6.png"
+    },
+    {
+      
       description: "Professional video surveillance and security solution provider",
       logo: "/img/Picture5.png"
     },
