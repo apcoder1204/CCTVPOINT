@@ -70,7 +70,7 @@ const ProductCarousel = () => {
     <div className="relative">
       <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
         <CardContent className="p-0">
-          <div className="relative h-80 overflow-hidden">
+          <div className="relative h-80 md:h-80 overflow-hidden">
             {products.map((product, index) => (
               <div
                 key={index}
@@ -81,31 +81,31 @@ const ProductCarousel = () => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 h-full">
                   {/* Image */}
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden h-48 md:h-full">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain md:object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                   </div>
                   
                   {/* Content */}
-                  <div className="p-8 flex flex-col justify-center bg-white/95 backdrop-blur-sm">
-                    <Badge className="w-fit mb-3 bg-primary/10 text-primary border-primary/20">
+                  <div className="p-4 md:p-8 flex flex-col justify-center bg-white/95 backdrop-blur-sm h-32 md:h-full">
+                    <Badge className="w-fit mb-2 md:mb-3 bg-primary/10 text-primary border-primary/20 text-xs md:text-sm">
                       {product.category}
                     </Badge>
-                    <h3 className="text-2xl font-bold text-foreground mb-3">
+                    <h3 className="text-lg md:text-2xl font-bold text-foreground mb-2 md:mb-3">
                       {product.name}
                     </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 md:mb-6 leading-relaxed text-sm md:text-base hidden md:block">
                       {product.description}
                     </p>
-                    <div className="flex space-x-3">
-                      <Button size="sm" className="bg-primary hover:bg-primary/90">
+                    <div className="flex space-x-2 md:space-x-3">
+                      <Button size="sm" className="bg-primary hover:bg-primary/90 text-xs md:text-sm">
                         Learn More
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="text-xs md:text-sm">
                         Get Quote
                       </Button>
                     </div>
