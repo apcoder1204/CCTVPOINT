@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Camera, Lock, ArrowRight } from "lucide-react";
+import { Shield, ArrowRight } from "lucide-react";
+import ProductCarousel from "./ProductCarousel";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -41,7 +42,6 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 onClick={scrollToContact}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground"
               >
                 Request a Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -50,6 +50,7 @@ const Hero = () => {
                 variant="outline" 
                 size="lg"
                 onClick={scrollToProducts}
+                className="hover:bg-primary hover:text-white hover:border-primary transition-colors"
               >
                 View Our Solutions
               </Button>
@@ -66,58 +67,15 @@ const Hero = () => {
                 <div className="text-sm text-muted-foreground">Support Available</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">5+</div>
+                <div className="text-2xl font-bold text-primary">10+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
             </div>
           </div>
 
-          {/* Visual Elements */}
+          {/* Product Showcase Carousel */}
           <div className="relative">
-            <div className="relative bg-gradient-to-br from-primary to-security-blue-light rounded-2xl p-8 shadow-2xl">
-              <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
-              <div className="relative z-10 space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <span className="text-white/80 text-sm">Security Dashboard</span>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                    <Camera className="w-8 h-8 text-white mb-2" />
-                    <div className="text-white font-semibold">CCTV Active</div>
-                    <div className="text-white/70 text-sm">12 Cameras Online</div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                    <Lock className="w-8 h-8 text-white mb-2" />
-                    <div className="text-white font-semibold">Access Control</div>
-                    <div className="text-white/70 text-sm">System Armed</div>
-                  </div>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-white font-semibold">System Status</span>
-                    <span className="text-green-400 text-sm">All Clear</span>
-                  </div>
-                  <div className="w-full bg-white/20 rounded-full h-2">
-                    <div className="bg-green-400 h-2 rounded-full w-4/5"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating elements */}
-            <div className="absolute -top-4 -left-4 w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-lg">
-              <Shield className="w-10 h-10 text-accent-foreground" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg">
-              <Camera className="w-8 h-8 text-primary-foreground" />
-            </div>
+            <ProductCarousel />
           </div>
         </div>
       </div>

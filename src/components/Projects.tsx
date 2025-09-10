@@ -1,7 +1,21 @@
 import { Building, Home, ShoppingBag, Warehouse, GraduationCap, Car } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
 
 const Projects = () => {
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
+
+  // Auto-rotate testimonials every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonialIndex((prevIndex) => 
+        (prevIndex + 1) % testimonials.length
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const projectTypes = [
     {
       icon: Home,
@@ -81,19 +95,61 @@ const Projects = () => {
     {
       name: "John Mwalimu",
       company: "Mbeya Shopping Center",
-      text: "Excellent service! The CCTV system has significantly improved our security. Professional installation and great after-sales support.",
+      text: "Hakuna shida! CCTV system yetu imeboresha usalama wetu sana. Installation ilikuwa professional na support baada ya kuuza ni nzuri kabisa. Asante sana!",
       rating: 5
     },
     {
       name: "Sarah Hassan",
       company: "Residential Client",
-      text: "Very satisfied with the home security system. The team was professional and the system works perfectly. Highly recommended!",
+      text: "Nimefurahi sana na home security system. Timu ilikuwa professional na system inafanya kazi vizuri. I recommend kabisa!",
       rating: 5
     },
     {
       name: "Dr. Peter Kamwene",
       company: "Mbeya Medical Center",
-      text: "Top-notch security solution for our medical facility. The access control system has streamlined our operations significantly.",
+      text: "Security solution bora kwa medical facility yetu. Access control system imeboresha operations zetu significantly. Tunashukuru sana!",
+      rating: 5
+    },
+    {
+      name: "Mama Grace Mwambene",
+      company: "Dar es Salaam Villa",
+      text: "Wewe! Security system yetu ni nzuri sana. Sasa tunajisikia salama nyumbani. CCTV inafanya kazi vizuri na alarm system pia. Asante BZ Tech!",
+      rating: 5
+    },
+    {
+      name: "Raj Patel",
+      company: "Arusha Electronics Store",
+      text: "Excellent service from BZ Tech! Our store security has improved dramatically. The team was very professional and the system works perfectly. Highly recommended!",
+      rating: 5
+    },
+    {
+      name: "Fatima Ali",
+      company: "Mwanza Hotel",
+      text: "Hotel yetu imepata security system bora kabisa. Access control na CCTV zote zinafanya kazi vizuri. Staff wote wamefurahi na usalama mpya. Shukrani!",
+      rating: 5
+    },
+    {
+      name: "Prof. James Mwakyembe",
+      company: "University of Dodoma",
+      text: "Campus security yetu imeboreshwa sana. CCTV cameras zote zinafanya kazi vizuri na access control system ni efficient. Tunashukuru BZ Tech team!",
+      rating: 5
+    },
+    {
+      name: "Hassan Mwinyi",
+      company: "Tanga Warehouse",
+      text: "Warehouse yetu imepata security system bora. Perimeter fencing na CCTV cameras zote zinafanya kazi vizuri. Timu ilikuwa professional sana!",
+      rating: 5
+    },
+    {
+      name: "Sister Mary Kamau",
+      company: "Kilimanjaro Hospital",
+      text: "Hospital yetu imepata security solution bora. Access control system imeboresha usalama wa patients na staff. Tunashukuru sana BZ Tech!",
+      rating: 5
+    },
+    {
+      name: "Ahmed Salim",
+      company: "Zanzibar Resort",
+      text: "Resort yetu imepata security system ya kisasa. CCTV cameras na access control zote zinafanya kazi vizuri. Guests wote wamefurahi na usalama!",
       rating: 5
     }
   ];
@@ -124,7 +180,7 @@ const Projects = () => {
                     </div>
                     <div>
                       <CardTitle className="text-lg">{project.title}</CardTitle>
-                      <p className="text-sm text-accent font-medium">{project.stats}</p>
+                      <p className="text-sm text-primary font-medium">{project.stats}</p>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm">{project.description}</p>
@@ -155,28 +211,51 @@ const Projects = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-card border">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <div key={i} className="w-4 h-4 bg-accent rounded-full mr-1"></div>
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground italic mb-4">"{testimonial.text}"</p>
-                  <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex justify-center">
+            <Card className="bg-card border max-w-3xl shadow-lg">
+              <CardContent className="p-8 text-center">
+                <div className="flex items-center justify-center mb-6">
+                  {[...Array(testimonials[currentTestimonialIndex].rating)].map((_, i) => (
+                    <div key={i} className="w-5 h-5 bg-primary rounded-full mr-2 animate-pulse"></div>
+                  ))}
+                </div>
+                <div className="min-h-[120px] flex items-center justify-center">
+                  <p className="text-lg text-muted-foreground italic mb-6 leading-relaxed transition-all duration-500 ease-in-out">
+                    "{testimonials[currentTestimonialIndex].text}"
+                  </p>
+                </div>
+                <div className="mb-6">
+                  <p className="font-semibold text-foreground text-lg">{testimonials[currentTestimonialIndex].name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonials[currentTestimonialIndex].company}</p>
+                </div>
+                
+                {/* Testimonial navigation dots */}
+                <div className="flex justify-center space-x-3">
+                  {testimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentTestimonialIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentTestimonialIndex 
+                          ? 'bg-primary scale-125' 
+                          : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                      }`}
+                      title={`View testimonial ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                
+                {/* Auto-rotation indicator */}
+                <div className="mt-4 text-xs text-muted-foreground">
+                  Testimonials auto-rotate every 4 seconds
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
         {/* Call to Action */}
-        <div className="bg-gradient-to-r from-primary to-security-blue-light rounded-2xl p-8 md:p-12 text-center">
+        {/* <div className="bg-gradient-to-r from-primary to-security-blue-light rounded-2xl p-8 md:p-12 text-center">
           <h3 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
             Ready to Join Our Success Stories?
           </h3>
@@ -201,7 +280,7 @@ const Projects = () => {
               Call for Consultation
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

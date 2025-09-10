@@ -103,7 +103,7 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/80" />
                 <div>
                   <p className="text-primary-foreground/80">
-                    Ilomba & Kabwe Street<br />
+                  Ilomba CCTV POINT(BZ-TECH) & Kabwe Street<br />
                     Mbeya, Tanzania
                   </p>
                 </div>
@@ -111,8 +111,8 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary-foreground/80" />
                 <div>
-                  <p className="text-primary-foreground/80">+255 123 456 789</p>
-                  <p className="text-primary-foreground/80">+255 987 654 321</p>
+                  <p className="text-primary-foreground/80">+255 759 875 769</p>
+                  <p className="text-primary-foreground/80">+255 759 875 769</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -122,9 +122,8 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <Clock className="w-4 h-4 mt-0.5 text-primary-foreground/80" />
                 <div className="text-primary-foreground/80">
-                  <p>Mon-Fri: 8AM-6PM</p>
-                  <p>Sat: 9AM-4PM</p>
-                  <p>Sun: Emergency Only</p>
+                  <p>Mon-Sun: 8AM-6PM</p>
+                  
                 </div>
               </div>
             </div>
@@ -150,7 +149,7 @@ const Footer = () => {
                 Facebook
               </button>
               <button 
-                onClick={() => window.open('https://wa.me/255123456789', '_blank')}
+                onClick={() => window.open('https://wa.me/255759875769', '_blank')}
                 className="text-primary-foreground/80 hover:text-white transition-colors text-sm"
               >
                 WhatsApp

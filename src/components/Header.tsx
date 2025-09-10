@@ -52,6 +52,12 @@ const Header = () => {
             >
               Products & Services
             </button>
+            <button 
+              onClick={() => location.pathname === '/' ? scrollToSection('team') : navigate('/#team')} 
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Team
+            </button>
             <button onClick={() => scrollToSection('why-choose-us')} className="text-foreground hover:text-primary transition-colors">
               Why Choose Us
             </button>
@@ -67,9 +73,9 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm">
               <Phone className="w-4 h-4 text-primary" />
-              <span>+255 123 456 789</span>
+              <span>+255 759 875 769</span>
             </div>
-            <Button onClick={() => scrollToSection('contact')} className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Button onClick={() => scrollToSection('contact')} className="bg-primary hover:bg-accent/90 text-accent-foreground">
               Get Quote
             </Button>
           </div>
@@ -101,6 +107,12 @@ const Header = () => {
                 className={`text-left transition-colors ${location.pathname === '/products' ? 'text-primary' : 'text-foreground hover:text-primary'}`}
               >
                 Products & Services
+              </button>
+              <button 
+                onClick={() => location.pathname === '/' ? scrollToSection('team') : navigate('/#team')} 
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Team
               </button>
               <button onClick={() => scrollToSection('why-choose-us')} className="text-left text-foreground hover:text-primary transition-colors">
                 Why Choose Us

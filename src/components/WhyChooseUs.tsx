@@ -111,13 +111,13 @@ const WhyChooseUs = () => {
               <div className="text-primary-foreground/80">Support Available</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">5+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">10+</div>
               <div className="text-primary-foreground/80">Years Experience</div>
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
+        {/* Call to Action
         <div className="text-center mt-16">
           <div className="bg-card border rounded-xl p-8 max-w-2xl mx-auto">
             <Headphones className="w-16 h-16 text-primary mx-auto mb-4" />
@@ -128,25 +128,9 @@ const WhyChooseUs = () => {
               Join hundreds of satisfied customers who trust us with their security needs. 
               Contact us today for a free consultation and quote.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Get Free Quote
-              </button>
-              <button 
-                onClick={() => window.open('tel:+255123456789', '_self')}
-                className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                Call Now
-              </button>
-            </div>
+            
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

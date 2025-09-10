@@ -23,7 +23,12 @@ const Partners = () => {
     {
       
       description: "Innovative networking solutions and wireless technology products",
-      logo: "/img/Picture4.jpg"
+      logo: "/img/shk.jpeg"
+    },
+    {
+      
+      description: "Innovative networking solutions and wireless technology products",
+      logo: "/img/spark.png"
     }
   ];
 

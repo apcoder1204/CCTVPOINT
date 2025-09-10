@@ -6,6 +6,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Projects from "@/components/Projects";
 import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
+import Team from "@/components/Team";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
       <Projects />
       <Partners />
       <Contact />
+      <Team />
       <Footer />
     </div>
   );

@@ -12,7 +12,7 @@ import {
   Send,
   Facebook,
   Instagram,
-  Twitter
+  X,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -36,21 +36,60 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      // Open WhatsApp with form data
+      openWhatsApp(formData);
+
       toast({
         title: "Message Sent Successfully!",
-        description: "We'll get back to you within 24 hours.",
+        description: "We've sent your message and opened WhatsApp for quick follow-up.",
       });
+
+      // Reset form
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Submit error:', error);
+      toast({
+        title: "Something Went Wrong",
+        description: "We couldn't send your message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
-  const openWhatsApp = () => {
-    const message = encodeURIComponent("Hello! I'm interested in your security solutions. Please provide more information.");
-    window.open(`https://wa.me/255123456789?text=${message}`, '_blank');
+  const openWhatsApp = (formData?: any) => {
+    let message = "Hello! I'm interested in your security solutions. Please provide more information.";
+    
+    if (formData) {
+      message = `*New Contact Form Submission*\n\n` +
+        `*Name:* ${formData.name}\n` +
+        `*Email:* ${formData.email}\n` +
+        `*Phone:* ${formData.phone || 'Not provided'}\n` +
+        `*Subject:* ${formData.subject}\n\n` +
+        `*Message:*\n${formData.message}`;
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/255759875769?text=${encodedMessage}`, '_blank');
   };
+
+
 
   return (
     <section id="contact" className="py-20 bg-background">
@@ -77,14 +116,14 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Ilomba & Kabwe Street<br />
+                  Ilomba CCTV POINT(BZ-TECH) & Kabwe Street<br />
                   Mbeya, Tanzania
                 </p>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="mt-3"
-                  onClick={() => window.open('https://maps.google.com/?q=Ilomba+Kabwe+Mbeya+Tanzania', '_blank')}
+                  onClick={() => window.open('https://maps.google.com/?q=CCTVPOINT(BZ-TECH)+Ilomba+Mbeya+Tanzania', '_blank')}
                 >
                   View on Map
                 </Button>
@@ -101,17 +140,17 @@ const Contact = () => {
               <CardContent className="space-y-2">
                 <div>
                   <p className="font-medium">Main Office:</p>
-                  <p className="text-muted-foreground">+255 123 456 789</p>
+                  <p className="text-muted-foreground">+255 759 875 769</p>
                 </div>
                 <div>
                   <p className="font-medium">Emergency Support:</p>
-                  <p className="text-muted-foreground">+255 987 654 321</p>
+                  <p className="text-muted-foreground">+255 759 875 769</p>
                 </div>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="mt-3"
-                  onClick={() => window.open('tel:+255123456789', '_self')}
+                  onClick={() => window.open('tel:+255 759 875 769', '_self')}
                 >
                   Call Now
                 </Button>
@@ -149,17 +188,10 @@ const Contact = () => {
               <CardContent>
                 <div className="space-y-2 text-muted-foreground">
                   <div className="flex justify-between">
-                    <span>Monday - Friday:</span>
+                    <span>Monday - Sunday:</span>
                     <span>8:00 AM - 6:00 PM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Saturday:</span>
-                    <span>9:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday:</span>
-                    <span>Emergency Only</span>
-                  </div>
+                
                 </div>
               </CardContent>
             </Card>
@@ -185,9 +217,9 @@ const Contact = () => {
                   </button>
                   <button 
                     className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                    onClick={() => window.open('https://twitter.com/cctvpoint_tz', '_blank')}
+                    onClick={() => window.open('https://x.com/cctvpoint_tz', '_blank')}
                   >
-                    <Twitter className="w-5 h-5 text-primary" />
+                    <X className="w-5 h-5 text-primary" />
                   </button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-3">@cctv_point.tz</p>
@@ -301,7 +333,7 @@ const Contact = () => {
                       type="button"
                       variant="outline"
                       onClick={openWhatsApp}
-                      className="flex-1"
+                      className="flex-1 hover:bg-primary hover:text-white hover:border-primary transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
                       WhatsApp Us
@@ -313,9 +345,9 @@ const Contact = () => {
 
             {/* Quick Actions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <Card className="bg-accent/10 border-accent/20">
+              <Card className="bg-primary/10 border-primary/20">
                 <CardContent className="p-6 text-center">
-                  <Phone className="w-8 h-8 text-accent mx-auto mb-3" />
+                  <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-semibold text-foreground mb-2">Need Immediate Help?</h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     Call our emergency support line for urgent security issues.
@@ -323,9 +355,10 @@ const Contact = () => {
                   <Button 
                     variant="outline"
                     size="sm"
-                    onClick={() => window.open('tel:+255987654321', '_self')}
+                    onClick={() => window.open('tel:+255 759 875 769', '_self')}
+                    className="hover:bg-primary hover:text-white hover:border-primary transition-colors"
                   >
-                    Emergency: +255 987 654 321
+                    Emergency: +255 759 875 769
                   </Button>
                 </CardContent>
               </Card>
@@ -335,14 +368,15 @@ const Contact = () => {
                   <MessageCircle className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-semibold text-foreground mb-2">Quick Quote</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Get a fast quote through WhatsApp for immediate assistance.
+                   WhatsApp for immediate assistance.
                   </p>
                   <Button 
                     variant="outline"
                     size="sm"
                     onClick={openWhatsApp}
+                    className="hover:bg-primary hover:text-white hover:border-primary transition-colors"
                   >
-                    WhatsApp Quote
+                    WhatsApp 
                   </Button>
                 </CardContent>
               </Card>

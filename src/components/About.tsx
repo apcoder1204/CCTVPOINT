@@ -25,16 +25,23 @@ const About = () => {
       subtitle: "Perimeter security solutions"
     },
     {
-      src: "/img/intercoms.jpeg",
-      alt: "Video Intercoms",
-      title: "Video Intercoms",
-      subtitle: "Smart communication systems"
+      src: "/img/picture1.jpg",
+      // alt: "Video Intercoms",
+      // title: "Video Intercoms",
+      // subtitle: "Smart communication systems"
     },
     {
       src: "/img/network.jpeg",
       alt: "Networking Solutions",
       title: "Networking Solutions",
       subtitle: "Complete infrastructure setup"
+    }
+    ,
+    {
+      src: "/img/team.jpg",
+      // alt: "Access Control",
+      // title: "Access Control",
+      // subtitle: "Advanced security solutions"
     }
   ];
 
@@ -79,7 +86,7 @@ const About = () => {
             </p>
             <div className="flex items-center space-x-4 pt-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">5+</div>
+                <div className="text-2xl font-bold text-primary">10+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
               <div className="text-center">
